@@ -28,6 +28,8 @@ public class ApplicationConstants {
 	public static final String OPERATION_READ 			= "/read/{id}";
 	public static final String OPERATION_DELETE			= "/delete/{id}";
 	public static final String OPERATION_LIST 			= "/list";
+	public static final String OPERATION_READ_BY_USERNAME_PASSWORD 		= "/user-by-username-and-password/{username}/{password}";
+	public static final String OPERATION_LIST_BY_COUNTRY 			= "/list-by-country/{country}";
 	
 	public static final String URL_API_TEST_CONTROLLER 	= URL_API_UI_BASE + "/test";
 	

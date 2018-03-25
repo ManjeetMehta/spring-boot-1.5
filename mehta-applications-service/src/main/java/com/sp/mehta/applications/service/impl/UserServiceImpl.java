@@ -13,8 +13,28 @@ import com.sp.mehta.applications.service.UserService;
 @Component
 public class UserServiceImpl implements UserService    {
 
+
+
 	@Autowired
 	UserRepository userRepository;
+
+	@Override
+	public UserVo findByUserNameAndPassword(String userName, String password) {
+		UserVo userVo = null;
+		User user;
+		if (userName != null && !(userName.toString().trim().isEmpty()) && password != null && !(password.toString().trim().isEmpty())){
+			user = userRepository.findByUserNameAndPassword(userName, password);
+			if (user != null) {
+				userVo=  new UserVo();
+				userVo.setId(user.getId());
+				userVo.setEmail(user.getEmail());
+				userVo.setUserName(user.getUserName());
+				userVo.setPassword(user.getPassword());
+			}
+		}
+		return userVo;
+	}
+	
 	
 	@Override
 	public Integer createUser(UserVo userVo, String userId) {

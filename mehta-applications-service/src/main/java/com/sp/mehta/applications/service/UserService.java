@@ -12,4 +12,5 @@ public interface UserService {
 
 	public Object listUser();
 
+	public UserVo findByUserNameAndPassword (String userName, String password);
 }

@@ -16,4 +16,6 @@ public interface OrgService {
 	boolean deleteOrg (Integer id);
 	
 	List<OrgVo> listOrg();
+	
+	List<OrgVo> listOrgByCountry(String country); 
 }

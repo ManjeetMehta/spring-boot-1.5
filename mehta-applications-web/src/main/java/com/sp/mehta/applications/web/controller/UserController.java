@@ -1,5 +1,8 @@
 package com.sp.mehta.applications.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,5 +61,26 @@ public class UserController {
 			return new ResponseBuilder().status(ResponseBuilder.Status.success).object(result).build();
 		
 		return new ResponseBuilder().status(ResponseBuilder.Status.error).object(result).build();
+	}
+	
+	
+	@RequestMapping(value = ApplicationConstants.OPERATION_READ_BY_USERNAME_PASSWORD, method = RequestMethod.GET)
+	public Map<String, Object> findByUserNameAndPassword(@PathVariable String username, @PathVariable String password) {
+		UserVo userVo= null;
+		Map <String, Object> resultMap = new HashMap<String, Object>();
+		if (username != null && !(username.toString().trim().isEmpty()) && password != null && !(password.toString().trim().isEmpty()))	{
+			
+			userVo = userService.findByUserNameAndPassword(username, password);
+			if (userVo != null) {
+				resultMap.put("success", true);
+				resultMap.put("userVo", userVo);
+			}
+			else {
+				resultMap.put("error", "not found");
+			}
+		}else
+			resultMap.put("error", "Invalid userName and password");
+		
+		return resultMap;	
 	}
 }

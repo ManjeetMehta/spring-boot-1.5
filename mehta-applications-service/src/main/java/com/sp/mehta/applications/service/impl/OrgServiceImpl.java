@@ -77,7 +77,7 @@ public class OrgServiceImpl implements OrgService {
 					addressVo.setCountry(org.getAddress().getCountry());
 					addressVo.setPincode(org.getAddress().getPincode());
 					addressVo.setState(org.getAddress().getState());
-					if (org.getAddress().getUser() != null)	{
+					if (org.getAddress().getUser() != null) {
 						UserVo userVo = new UserVo();
 						userVo.setId(org.getAddress().getUser().getId());
 						addressVo.setUserVo(userVo);
@@ -87,9 +87,10 @@ public class OrgServiceImpl implements OrgService {
 						userVo.setPassword(org.getAddress().getUser().getPassword());
 					}
 					orgVo.setAddressVo(addressVo);
-					
+
+				}
 			}
-		}}
+		}
 		return orgVo;
 	}
 
@@ -122,6 +123,32 @@ public class OrgServiceImpl implements OrgService {
 				}
 			}
 		}
+		return orgVoList;
+	}
+
+	@Override
+	public List<OrgVo> listOrgByCountry(String country) {
+		List<OrgVo> orgVoList = null;
+		if (country != null && !(country.toString().trim().isEmpty())) {
+			List<Org> orgList = orgRepository.findAllByCountry(country);
+
+			if (orgList != null) {
+
+				orgVoList = new ArrayList<OrgVo>();
+				OrgVo orgVo = null;
+				for (Org org : orgList) {
+					if (org != null) {
+						orgVo = new OrgVo();
+						orgVo.setId(org.getId());
+						orgVo.setName(org.getName());
+						orgVo.setActive(org.isActive());
+						orgVo.setCountry(org.getCountry());
+						orgVoList.add(orgVo);
+					}
+				}
+			}
+		}
+
 		return orgVoList;
 	}
 
