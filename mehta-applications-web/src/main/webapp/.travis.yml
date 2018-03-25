@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- '6'
+install:
+- npm install
+- bower install
+before_script:
+- chmod +x ./scripts/deploy.sh
+script:
+- gulp test
+- gulp docs:clean
+- gulp docs:build
+- gulp build
+after_success:
+- bash ./scripts/deploy.sh
+env:
+  global:
+  - GH_REF: github.com/fluanceit/angular-dashboard.git
+  - GH_BOWER_REF: github.com/fluanceit/bower-angular-dashboard
+branches:
+  only:
+    - master
