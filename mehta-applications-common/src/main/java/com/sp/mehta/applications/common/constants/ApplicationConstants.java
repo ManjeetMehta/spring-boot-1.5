@@ -28,6 +28,9 @@ public class ApplicationConstants {
 	public static final String OPERATION_READ 			= "/read/{id}";
 	public static final String OPERATION_DELETE			= "/delete/{id}";
 	public static final String OPERATION_LIST 			= "/list";
+	
+	public static final String OPERATION_CREATE_COMPOSITE 		= "/create-composite";
+	
 	public static final String OPERATION_READ_BY_USERNAME_PASSWORD 		= "/user-by-username-and-password/{username}/{password}";
 	public static final String OPERATION_LIST_BY_COUNTRY 			= "/list-by-country/{country}";
 	public static final String OPERATION_ORG_DETAILS 			= "/details/{id}";

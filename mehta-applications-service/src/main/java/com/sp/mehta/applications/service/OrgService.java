@@ -21,4 +21,6 @@ public interface OrgService {
 	List<OrgVo> listOrgByCountry(String country);
 
 	OrgDetailsVo readOrgDetails(Integer id); 
+	
+	Integer createCompositeOrg (OrgVo orgVo);
 }

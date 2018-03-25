@@ -3,6 +3,8 @@ package com.sp.mehta.applications.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import com.sp.mehta.applications.model.Address;
 import com.sp.mehta.applications.model.Org;
 import com.sp.mehta.applications.repository.AddressRepository;
 import com.sp.mehta.applications.repository.OrgRepository;
+import com.sp.mehta.applications.service.AddressService;
 import com.sp.mehta.applications.service.OrgService;
 
 @Component
@@ -24,9 +27,48 @@ public class OrgServiceImpl implements OrgService {
 
 	@Autowired
 	AddressRepository addressRepository;
+	
+	@Autowired
+	AddressService addressService;
+
+	private static final Logger logger = LoggerFactory.getLogger(OrgServiceImpl.class);
+
 
 	@Override
 	public Integer createOrg(OrgVo orgVo) {
+		if (orgVo != null) {
+			Org org = new Org();
+			org.setName(orgVo.getName());
+			org.setCountry(orgVo.getCountry());
+			org.setActive(orgVo.isActive());
+
+			Address address = null;
+			if (orgVo.getAddressVo() != null && orgVo.getAddressVo().getId()!=null) {
+				Integer id = orgVo.getAddressVo().getId();
+				if (id != null) {
+					address = addressRepository.findOne(id);
+					if (address != null) {
+						org.setAddress(address);
+					}else {
+						logger.error("Invalid address Id");
+						return null;
+					}
+				}
+			}else {
+				logger.error("Address Can't be null");
+				return null;
+			}
+				
+			org = orgRepository.save(org);
+			if (org != null) {
+				return org.getId();
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public Integer createCompositeOrg(OrgVo orgVo) {
 		if (orgVo != null) {
 			Org org = new Org();
 			org.setName(orgVo.getName());
@@ -40,10 +82,29 @@ public class OrgServiceImpl implements OrgService {
 					address = addressRepository.findOne(id);
 					if (address != null) {
 						org.setAddress(address);
+					}else {
+						logger.error("Invalid Address Id");
+						return  null;
 					}
-
+				}else {
+					Integer addressId = addressService.createAddress(orgVo.getAddressVo());
+					if(addressId!=null) {
+						address = addressRepository.findOne(addressId);
+						if (address != null) {
+							org.setAddress(address);
+						}else {
+							logger.error("Address Can't be creatd...");
+							return null;
+						}
+					}
+					
 				}
+					
+			}else {
+				logger.error("Address Can't be null");
+				return null;
 			}
+				
 			org = orgRepository.save(org);
 			if (org != null) {
 				return org.getId();

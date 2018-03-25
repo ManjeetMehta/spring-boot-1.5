@@ -102,6 +102,26 @@ public class OrgController {
 		}
 		return resultMap;
 	}
+	
+	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE_COMPOSITE, method = RequestMethod.POST)
+	Map<String, Object> createCompositeOrg(@RequestBody OrgVo orgVo) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Integer id = null;
+
+		if (orgVo != null) {
+			id = orgService.createCompositeOrg(orgVo);
+			if (id != null) {
+				resultMap.put("id", id);
+				resultMap.put("success", true);
+			} else {
+				resultMap.put("error", "server error");
+			}
+
+		} else {
+			resultMap.put("error", "input object can't be null");
+		}
+		return resultMap;
+	}
 
 	// @RequestMapping(value = ApplicationConstants.)
 
