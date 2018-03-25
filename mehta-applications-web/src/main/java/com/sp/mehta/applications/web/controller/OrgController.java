@@ -1,5 +1,8 @@
 package com.sp.mehta.applications.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,12 +35,24 @@ public class OrgController {
 	}
 
 	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
-	Integer createOrg(@RequestBody OrgVo orgVo) {
+	Map<String, Object> createOrg(@RequestBody OrgVo orgVo) {
+		Map <String, Object> resultMap = new HashMap <String, Object>();
 		Integer id = null;
 		if (orgVo != null) {
 			id = orgService.createOrg(orgVo);
+			if (id!= null) {
+				resultMap.put("id" , id);
+				resultMap.put("success", true);
+			}
+			else {
+				resultMap.put("error", "server error");
+			}
+			
 		}
-			return id;
+		else {
+			resultMap.put("error", "input object can't be null");
+		}
+		return resultMap;
 	}
 
 	// @RequestMapping(value = ApplicationConstants.)
