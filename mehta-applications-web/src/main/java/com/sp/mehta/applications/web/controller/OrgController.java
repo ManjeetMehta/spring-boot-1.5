@@ -3,8 +3,11 @@ package com.sp.mehta.applications.web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,20 +27,36 @@ public class OrgController {
 
 	@Value("${mehta.welcome.message}")
 	private String message;
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrgController.class);
 
+	@ExceptionHandler({NullPointerException.class, NumberFormatException.class})
 	@RequestMapping(value = ApplicationConstants.OPERATION_READ, method = RequestMethod.GET)
-	OrgVo readOrg(@PathVariable Integer id) {
+	Map<String, Object> readOrg(@PathVariable Integer id) {
+		logger.info("Org Read contoller Called...");
 		OrgVo orgVo = null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		if (id != null) {
 			orgVo = orgService.readOrg(id);
+			resultMap.put("success", orgVo);
+			if(orgVo!=null) {
+				logger.info("orgvo Return");
+			//	throw new NumberFormatException();
+			}else
+				logger.warn("Invalid orgId..");
+
+		}else {
+			logger.error("Id is null...");
 		}
-		return orgVo;
+		return resultMap;
 	}
 
+	
 	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
 	Map<String, Object> createOrg(@RequestBody OrgVo orgVo) {
 		Map <String, Object> resultMap = new HashMap <String, Object>();
 		Integer id = null;
+		
 		if (orgVo != null) {
 			id = orgService.createOrg(orgVo);
 			if (id!= null) {

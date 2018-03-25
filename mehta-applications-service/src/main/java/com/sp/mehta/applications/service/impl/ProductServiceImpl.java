@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sp.mehta.applications.common.vo.AddressVo;
 import com.sp.mehta.applications.common.vo.OrgVo;
 import com.sp.mehta.applications.common.vo.ProductVo;
 import com.sp.mehta.applications.model.Org;
@@ -96,6 +97,15 @@ public class ProductServiceImpl implements ProductService {
 						OrgVo orgVo = new OrgVo();
 						orgVo.setId(product.getOrg().getId());
 						productVo.setOrgVo(orgVo);
+						orgVo.setName(product.getOrg().getName());
+						orgVo.setCountry(product.getOrg().getCountry());
+						orgVo.setActive(product.getOrg().isActive());
+						
+						if (product.getOrg().getAddress() != null) {
+							AddressVo addressVo = new AddressVo();
+						//	addressVo.setId(product.getOrg().getId());
+							
+						}
 					}
 					
 

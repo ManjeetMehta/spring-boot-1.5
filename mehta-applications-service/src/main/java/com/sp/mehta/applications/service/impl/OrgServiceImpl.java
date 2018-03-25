@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.sp.mehta.applications.common.vo.AddressVo;
 import com.sp.mehta.applications.common.vo.OrgVo;
+import com.sp.mehta.applications.common.vo.UserVo;
 import com.sp.mehta.applications.model.Address;
 import com.sp.mehta.applications.model.Org;
 import com.sp.mehta.applications.repository.AddressRepository;
@@ -19,10 +20,10 @@ public class OrgServiceImpl implements OrgService {
 
 	@Autowired
 	OrgRepository orgRepository;
-	
+
 	@Autowired
 	AddressRepository addressRepository;
-	
+
 	@Override
 	public Integer createOrg(OrgVo orgVo) {
 		if (orgVo != null) {
@@ -30,16 +31,16 @@ public class OrgServiceImpl implements OrgService {
 			org.setName(orgVo.getName());
 			org.setCountry(orgVo.getCountry());
 			org.setActive(orgVo.isActive());
-			
+
 			Address address = null;
-			if(orgVo.getAddressVo() != null) {
+			if (orgVo.getAddressVo() != null) {
 				Integer id = orgVo.getAddressVo().getId();
-				if(id != null) {
+				if (id != null) {
 					address = addressRepository.findOne(id);
 					if (address != null) {
 						org.setAddress(address);
 					}
-						
+
 				}
 			}
 			org = orgRepository.save(org);
@@ -67,12 +68,28 @@ public class OrgServiceImpl implements OrgService {
 				orgVo.setName(org.getName());
 				orgVo.setCountry(org.getCountry());
 				orgVo.setActive(org.isActive());
-				
-				AddressVo addressVo = new AddressVo();
-				addressVo.setId(org.getAddress().getId());
-				orgVo.setAddressVo(addressVo);
+
+				if (org.getAddress() != null) {
+					AddressVo addressVo = new AddressVo();
+					addressVo.setId(org.getAddress().getId());
+					orgVo.setAddressVo(addressVo);
+					addressVo.setCity(org.getAddress().getCity());
+					addressVo.setCountry(org.getAddress().getCountry());
+					addressVo.setPincode(org.getAddress().getPincode());
+					addressVo.setState(org.getAddress().getState());
+					if (org.getAddress().getUser() != null)	{
+						UserVo userVo = new UserVo();
+						userVo.setId(org.getAddress().getUser().getId());
+						addressVo.setUserVo(userVo);
+						userVo.setUserName(org.getAddress().getUser().getUserName());
+						userVo.setEmail(org.getAddress().getUser().getEmail());
+						userVo.setActive(org.getAddress().getUser().getActive());
+						userVo.setPassword(org.getAddress().getUser().getPassword());
+					}
+					orgVo.setAddressVo(addressVo);
+					
 			}
-		}
+		}}
 		return orgVo;
 	}
 
@@ -86,26 +103,26 @@ public class OrgServiceImpl implements OrgService {
 	public List<OrgVo> listOrg() {
 		List<OrgVo> orgVoList = null;
 		List<Org> orgList = (List<Org>) orgRepository.findAll();
-	
+
 		if (orgList != null) {
 			orgVoList = new ArrayList<OrgVo>();
 			OrgVo orgVo = null;
 			for (Org org : orgList) {
 				if (org != null) {
-					orgVo =new OrgVo();
+					orgVo = new OrgVo();
 					orgVo.setName(org.getName());
 					orgVo.setCountry(org.getCountry());
 					orgVo.setActive(org.isActive());
-					
-					AddressVo addressVo= new AddressVo();
+
+					AddressVo addressVo = new AddressVo();
 					addressVo.setId(org.getAddress().getId());
-					
+
 					orgVo.setAddressVo(addressVo);
 					orgVoList.add(orgVo);
 				}
 			}
 		}
-		return orgVoList;	
+		return orgVoList;
 	}
 
 }
