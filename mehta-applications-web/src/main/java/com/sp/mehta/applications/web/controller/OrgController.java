@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sp.mehta.applications.common.constants.ApplicationConstants;
+import com.sp.mehta.applications.common.vo.OrgDetailsVo;
 import com.sp.mehta.applications.common.vo.OrgVo;
 import com.sp.mehta.applications.service.OrgService;
 
@@ -52,7 +53,36 @@ public class OrgController {
 		}
 		return resultMap;
 	}
+	
+	@ExceptionHandler({ NullPointerException.class, NumberFormatException.class })
+	@RequestMapping(value = ApplicationConstants.OPERATION_ORG_DETAILS, method = RequestMethod.GET)
+	Map<String, Object> orgDetails(@PathVariable Integer id) {
+		logger.info("Org Read contoller Called...");
+		OrgDetailsVo orgDetailsVo = null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (id != null) {
+			orgDetailsVo = orgService.readOrgDetails(id);
+			resultMap.put("success", true);
+			
+/*			Map<String,Object> innerMap = new HashMap<String,Object>();
+			innerMap.put("id",orgVo.getId());
+			innerMap.put("userName",orgVo.getAddressVo().getUserVo().getUserName());*/
+			
+			
+			resultMap.put("orgDetailsVo", orgDetailsVo);
+			
+			if (orgDetailsVo != null) {
+				logger.info("orgvo Return");
+				// throw new NumberFormatException();
+			} else
+				logger.warn("Invalid orgId..");
 
+		} else {
+			logger.error("Id is null...");
+		}
+		return resultMap;
+	}
+	
 	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
 	Map<String, Object> createOrg(@RequestBody OrgVo orgVo) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();

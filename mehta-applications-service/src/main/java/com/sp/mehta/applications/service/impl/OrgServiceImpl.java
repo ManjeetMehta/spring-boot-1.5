@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sp.mehta.applications.common.vo.AddressVo;
+import com.sp.mehta.applications.common.vo.OrgDetailsVo;
 import com.sp.mehta.applications.common.vo.OrgVo;
 import com.sp.mehta.applications.common.vo.UserVo;
 import com.sp.mehta.applications.model.Address;
@@ -150,6 +151,36 @@ public class OrgServiceImpl implements OrgService {
 		}
 
 		return orgVoList;
+	}
+
+	@Override
+	public OrgDetailsVo readOrgDetails(Integer id) {
+
+		OrgDetailsVo orgDetailsVo = null;
+		if (id != null) {
+			Org org = orgRepository.findOne(id);
+			if (org != null) {
+				orgDetailsVo = new OrgDetailsVo();
+				orgDetailsVo.setId(org.getId());
+				orgDetailsVo.setName(org.getName());
+				orgDetailsVo.setCountry(org.getCountry());
+				orgDetailsVo.setActive(org.isActive());
+				
+				if (org.getAddress() != null) {
+					orgDetailsVo.setState(org.getAddress().getState());
+					orgDetailsVo.setCity(org.getAddress().getCity());
+					orgDetailsVo.setPincode(Integer.parseInt(org.getAddress().getPincode()));
+					if (org.getAddress().getUser() != null) {
+						orgDetailsVo.setName(org.getAddress().getUser().getUserName());
+						orgDetailsVo.setEmail(org.getAddress().getUser().getEmail());
+						orgDetailsVo.setPassword(org.getAddress().getUser().getPassword());
+					}
+
+				}
+			}
+		}
+		return orgDetailsVo;
+	
 	}
 
 }
