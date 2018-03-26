@@ -1,6 +1,8 @@
 package com.sp.mehta.applications.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,14 +32,25 @@ public class AddressController {
 	private String message;
 
 	@RequestMapping(value = ApplicationConstants.OPERATION_READ, method = RequestMethod.GET)
-	AddressVo readAddress(@PathVariable Integer id) {
+	Map<String, Object> readAddress(@PathVariable Integer id) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		AddressVo addressVo = null;
 		if (id != null) {
 			addressVo = addressService.readAddress(id);
+			if (addressVo != null) {
+				resultMap.put("adressVo", addressVo);
+				resultMap.put("success", true);
+			} else {
+				resultMap.put("Error", "id not found");
+				return resultMap;
+			}
+		} else {
+			resultMap.put("Error", "id can't be null");
 		}
-
-		return addressVo;
+		return resultMap;
 	}
+	
+	
 
 	@RequestMapping(value = ApplicationConstants.OPERATION_LIST, method = RequestMethod.GET)
 	List<AddressVo> listAddress() {
@@ -49,14 +62,17 @@ public class AddressController {
 	}
 	
 	@RequestMapping (value= ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
-	Integer createAddress (@RequestBody AddressVo addressVo) {
+	Map<String, Object> createAddress (@RequestBody AddressVo addressVo) {
 		Integer id= null;
+		Map <String, Object> resultMap = new HashMap<String, Object>();
 		logger.info(message);
 		if (addressVo != null) {
 			id = addressService.createAddress(addressVo);
+			resultMap.put("id", id);
+			
 		}
 		
-		return id;
+		return resultMap;
 		
 	}
 	
