@@ -5,6 +5,9 @@ public class ApplicationConstants {
 	public static final String URL_API_VERSION 			= "/v1.0";
 	public static final String URL_API_BASE 			= "/api" + URL_API_VERSION;
 	public static final String URL_API_UI_BASE 			= URL_API_BASE + "/ui";
+	
+	public static final String API_KEY					="apiKey";
+	public static final String API_VALUE				="apiValue";
 
 	public static final String RESPONSE_ID 				= "id";
 	public static final String RESPONSE_OBJECT 			= "object";
@@ -30,11 +33,11 @@ public class ApplicationConstants {
 	public static final String OPERATION_LIST 			= "/list";
 	
 	public static final String OPERATION_CREATE_COMPOSITE 		= "/create-composite";
-	
+	public static final String OPERATION_CREATE_COMPOSITE_ADDRESS 		= "/create-composite-add";
 	public static final String OPERATION_READ_BY_USERNAME_PASSWORD 		= "/user-by-username-and-password/{username}/{password}";
 	public static final String OPERATION_LIST_BY_COUNTRY 			= "/list-by-country/{country}";
 	public static final String OPERATION_ORG_DETAILS 			= "/details/{id}";
-
+	public static final String OPERATION_ADDRESS_DETAILS 			= "/adddetails/{id}";
 	
 	public static final String URL_API_TEST_CONTROLLER 	= URL_API_UI_BASE + "/test";
 	
@@ -42,9 +45,13 @@ public class ApplicationConstants {
 	public static final String OPERATION_USER			= "/user";
 	public static final String OPERATION_ROLES			= "/roles";
 	public static final String OPERATION_ADDRESS		= "/address";
+	public static final String OPERATION_SYSTEM		  	= "/system";
 	public static final String OPERATION_ORG			= "/org";
 	public static final String OPERATION_PRODUCT		= "/product";
 	public static final String OPERATION_EMPLOYEE		= "/employee";
+	public static final String OPERATION_POLICY			= "/policy";
+	public static final String OPERATION_GEOLOCATION		= "/geo";
+	
 	
 	public static final String OPERATION_TEST			="/test";
 	

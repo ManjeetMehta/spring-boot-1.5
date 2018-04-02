@@ -1,6 +1,5 @@
 package com.sp.mehta.applications.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,33 +21,61 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employeeVo != null) {
 			Employee employee = new Employee();
 	//		employee.setId(employeeVo.getId());
-			employee.setFirst_name(employeeVo.getFirst_name());
-			employee.setMiddle_name(employeeVo.getMiddle_name());
-			employee.setLast_name(employeeVo.getLast_name());
-			employee.setStorage_forder_name(employeeVo.getStorage_forder_name());
-			employee.setDate_of_birth(employeeVo.getDate_of_birth());
-			employee.setJoining_date(employeeVo.getJoining_date()); 
+			employee.setFirstName(employeeVo.getFirstName());
+			employee.setMiddleName(employeeVo.getMiddleName());
+			employee.setLastName(employeeVo.getLastName());
+			employee.setStoragefolderName(employeeVo.getStorageForderName());
+			employee.setDateOfBirth(employeeVo.getDateOfBirth());
+			employee.setJoiningDate(employeeVo.getJoiningDate()); 
 			employee.setNationality(employeeVo.getNationality());
 			employee.setEmail(employeeVo.getEmail()); 
-			employee.setPassport_number(employeeVo.getPassport_number());
-			employee.setResident_permit(employeeVo.getResident_permit()); 
+			employee.setPassportNumber(employeeVo.getPassportNumber());
+			employee.setResidentPermit(employeeVo.getResidentPermit()); 
 			employee.setActive(employeeVo.getActive()); 
-			employee.setCorporate_id(employeeVo.getCorporate_id()); 
+			employee.setCorporateId(employeeVo.getCorporateId()); 
 			employee.setCreated(employeeVo.getCreated()); 
-			employee.setCreated_by(employeeVo.getCreated_by()); 
-			employee.setLast_modified(employeeVo.getLast_modified()); 
-			employee.setLast_modified_by(employeeVo.getLast_modified_by());
-			return employeeVo.getId();
-					
+			employee.setCreatedBy(employeeVo.getCreatedBy()); 
+			employee.setLastModified(employeeVo.getLastModified()); 
+			employee.setLastModifiedBy(employeeVo.getLastModifiedBy());
+				
+			employee = employeeRepository.save(employee);
+
+			if (employee !=null && employee.getId() != null)
+			return employee.getId();
 		}
+
 		
 		return null;
 	}
 
 	@Override
-	public Boolean updateEmployee(EmployeeVo EmployeeVo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean updateEmployee(EmployeeVo employeeVo) {
+		if (employeeVo != null && employeeVo.getId() !=null) {
+			Employee employee = employeeRepository.findOne(employeeVo.getId());
+			if (employee != null) {
+				employee = new Employee();
+				employee.setId(employeeVo.getId());
+				employee.setFirstName(employeeVo.getFirstName());
+				employee.setMiddleName(employeeVo.getMiddleName());
+				employee.setLastName(employeeVo.getLastName());
+				employee.setStoragefolderName(employeeVo.getStorageForderName());
+				employee.setDateOfBirth(employeeVo.getDateOfBirth());
+				employee.setJoiningDate(employeeVo.getJoiningDate()); 
+				employee.setNationality(employeeVo.getNationality());
+				employee.setEmail(employeeVo.getEmail()); 
+				employee.setPassportNumber(employeeVo.getPassportNumber());
+				employee.setResidentPermit(employeeVo.getResidentPermit()); 
+				employee.setActive(employeeVo.getActive()); 
+				employee.setCorporateId(employeeVo.getCorporateId()); 
+				employee.setCreated(employeeVo.getCreated()); 
+				employee.setCreatedBy(employeeVo.getCreatedBy()); 
+				employee.setLastModified(employeeVo.getLastModified()); 
+				employee.setLastModifiedBy(employeeVo.getLastModifiedBy());
+			}
+			employeeRepository.save(employee);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -58,17 +85,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 			Employee employee = employeeRepository.findOne(id);
 			if (employee != null) {
 				employeeVo = new EmployeeVo();
+
+				employeeVo.setFirstName(employee.getFirstName());
+				employeeVo.setMiddleName(employee.getMiddleName());
+				employeeVo.setLastName(employee.getLastName());
+				employeeVo.setStorageForderName(employee.getStoragefolderName());
+				employeeVo.setCorporateId(employee.getCorporateId());
 				employeeVo.setActive(employee.getActive());
-				employeeVo.setFirst_name(employee.getFirst_name());
-				employeeVo.setMiddle_name(employee.getMiddle_name());
-				employeeVo.setLast_name(employee.getLast_name());
-				employeeVo.setStorage_forder_name(employee.getStorage_forder_name());
-				employeeVo.setCorporate_id(employee.getCorporate_id());
+				employeeVo.setLastModified(employee.getLastModified());
+				employeeVo.setLastModifiedBy(employee.getLastModifiedBy());
 				employeeVo.setCreated(employee.getCreated());
-				employeeVo.setCreated_by(employee.getCreated_by());
+				employeeVo.setResidentPermit(employee.getResidentPermit());
+				employeeVo.setEmail(employee.getEmail());
+				employeeVo.setCreatedBy(employee.getCorporateId());
+				employeeVo.setDateOfBirth(employee.getDateOfBirth());
+				employeeVo.setJoiningDate(employee.getJoiningDate());
 			}
 		}
-		return null;
+		return employeeVo;
 	}
 
 	@Override
@@ -79,8 +113,36 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<EmployeeVo> listEmployee() {
-		// TODO Auto-generated method stub
-		return null;
+		List<EmployeeVo> employeeVoList = null;
+		List<Employee> employeeList = (List<Employee>) employeeRepository.findAll();
+		
+		if (employeeList != null) {
+			employeeVoList = null;
+			EmployeeVo employeeVo;
+			for (Employee employee : employeeList) {
+				if (employee != null) {
+					employeeVo = new EmployeeVo();
+					employeeVo.setId(employee.getId());
+					employeeVo.setFirstName(employee.getFirstName());
+					employeeVo.setMiddleName(employee.getMiddleName());
+					employeeVo.setLastName(employee.getLastName());
+					employeeVo.setStorageForderName(employee.getStoragefolderName());
+					employeeVo.setCorporateId(employee.getCorporateId());
+					employeeVo.setActive(employee.getActive());
+					employeeVo.setLastModified(employee.getLastModified());
+					employeeVo.setLastModifiedBy(employee.getLastModifiedBy());
+					employeeVo.setCreated(employee.getCreated());
+					employeeVo.setResidentPermit(employee.getResidentPermit());
+					employeeVo.setEmail(employee.getEmail());
+					employeeVo.setCreatedBy(employee.getCorporateId());
+					employeeVo.setDateOfBirth(employee.getDateOfBirth());
+					employeeVo.setJoiningDate(employee.getJoiningDate());
+					employeeVoList.add(employeeVo);
+				}
+			}
+			
+		}
+		return employeeVoList;
 	}
 
 	

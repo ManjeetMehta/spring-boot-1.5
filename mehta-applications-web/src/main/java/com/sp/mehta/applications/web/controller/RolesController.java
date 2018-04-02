@@ -1,5 +1,8 @@
 package com.sp.mehta.applications.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +23,8 @@ public class RolesController {
 	RolesService rolesService;
 	
 	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
-	public Object createRoles(@RequestBody RolesVo rolesVo) {
-		
+	Map<String, Object> createRoles(@RequestBody RolesVo rolesVo) {
+		Map <String, Object> resultMap = new HashMap<>();
 		Integer id = rolesService.createRoles(rolesVo, "1001");
 		
 		if(id!=null && id>0)

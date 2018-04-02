@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sp.mehta.applications.common.constants.ApplicationConstants;
+import com.sp.mehta.applications.common.vo.AddressDetailsVo;
 import com.sp.mehta.applications.common.vo.AddressVo;
 import com.sp.mehta.applications.service.AddressService;
 
@@ -55,7 +56,7 @@ public class AddressController {
 	@RequestMapping(value = ApplicationConstants.OPERATION_LIST, method = RequestMethod.GET)
 	List<AddressVo> listAddress() {
 		List<AddressVo> addressVoList = null;
-
+		
 		addressVoList = addressService.listAddress();
 
 		return addressVoList;
@@ -88,5 +89,46 @@ public class AddressController {
 		return false;
 		
 	}
+	
+	
+	@RequestMapping (value= ApplicationConstants.OPERATION_ADDRESS_DETAILS, method = RequestMethod.GET)
+	Map <String, Object> addressDetails (@RequestBody Integer id){
+		Map <String, Object> resultMap = new HashMap<>();
+		if (id != null) {
+			AddressDetailsVo addressDetailsVo= null;
+			addressDetailsVo = addressService.readAddressDetails(id);
+			if (addressDetailsVo != null) {
+				resultMap.put("Addess Details", addressDetailsVo);
+				resultMap.put("Success", true);
+			}
+			else {
+				resultMap.put("Error", "internal error");
+			}
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping (value= ApplicationConstants.OPERATION_CREATE_COMPOSITE_ADDRESS, method = RequestMethod.POST)
+	Map <String, Object> creatCompositAddress (@RequestBody AddressVo addressVo){
+		Map <String, Object> resultMap = new HashMap<>();
+		Integer id = null;
+		if (addressVo != null) {
+			id = addressService.createCompositeAddress(addressVo);
+			if (id != null) {
+				resultMap.put("Success", true);
+				resultMap.put("id", id);
+			}
+			else {
+				resultMap.put("Error", "Internal Error");
+			}
+		}
+		else
+		{
+			resultMap.put("Error", "id can't be null");
+		}
+		return resultMap;
+	}
+	
+//	@RequestMapping (value= )
 	
 }

@@ -9,7 +9,7 @@ public interface EmployeeService  {
 
 	Integer createEmployee (EmployeeVo employeeVo);
 	
-	Boolean updateEmployee (EmployeeVo EmployeeVo);
+	Boolean updateEmployee (EmployeeVo employeeVo);
 	
 	EmployeeVo readEmployee (Integer id);
 	

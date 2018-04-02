@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sp.mehta.applications.common.vo.AddressDetailsVo;
 import com.sp.mehta.applications.common.vo.AddressVo;
 import com.sp.mehta.applications.common.vo.UserVo;
 import com.sp.mehta.applications.model.Address;
@@ -155,6 +156,73 @@ public class AddressServiceImpl implements AddressService {
 
 		}
 
+		return addressVoList;
+	}
+
+	@Override
+	public AddressDetailsVo readAddressDetails(Integer id) {
+		if (id != null) {
+			AddressDetailsVo addressDetailsVo = null;
+			Address address = addressRepository.findOne(id);
+			if (address != null) {
+				addressDetailsVo.setId(address.getId());
+				addressDetailsVo.setCity(address.getCity());
+				addressDetailsVo.setState(address.getState());
+				addressDetailsVo.setCountry(address.getCountry());
+				addressDetailsVo.setUserName(address.getUser().getUserName());
+				addressDetailsVo.setEmail(address.getUser().getEmail());
+			}
+				
+		}
+		return null;
+	}
+
+	@Override
+	public Integer createCompositeAddress(AddressVo addressVo) {
+		Integer id=null;
+		if (addressVo != null) {
+			Address address = new Address();
+			address.setCity(addressVo.getCity());
+			address.setState(addressVo.getState());
+			address.setCountry(addressVo.getCountry());
+			
+			User user = new User();
+			
+			if (addressVo.getUserVo()!= null) {
+				id = addressVo.getUserVo().getId();
+				if (id != null) {
+					user = userRepository.findOne(id);
+					if (user != null) {
+						address.setUser(user);
+					}
+				}
+			}
+		}
+			
+
+		return id;
+	}
+
+	@Override
+	public List<AddressVo> listCountry(String country) {
+		List<AddressVo> addressVoList = new ArrayList<AddressVo>();
+		if (country != null && !(country.toString().trim().isEmpty())) {
+			List<Address> addressList = addressRepository.findAllByCountry(country);
+			if (addressList != null) {
+				AddressVo addressVo= null;
+				for (Address address: addressList) {
+					if (address != null) {
+						addressVo = new AddressVo();
+						addressVo.setId(address.getId());
+						addressVo.setCity(address.getCity());
+						addressVo.setState(address.getState());
+						addressVo.setCountry(address.getCountry());
+						
+						addressVoList.add(addressVo);
+					}
+				}
+			}
+		}
 		return addressVoList;
 	}
 

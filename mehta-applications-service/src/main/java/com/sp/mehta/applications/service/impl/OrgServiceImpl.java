@@ -27,12 +27,11 @@ public class OrgServiceImpl implements OrgService {
 
 	@Autowired
 	AddressRepository addressRepository;
-	
+
 	@Autowired
 	AddressService addressService;
 
 	private static final Logger logger = LoggerFactory.getLogger(OrgServiceImpl.class);
-
 
 	@Override
 	public Integer createOrg(OrgVo orgVo) {
@@ -43,22 +42,22 @@ public class OrgServiceImpl implements OrgService {
 			org.setActive(orgVo.isActive());
 
 			Address address = null;
-			if (orgVo.getAddressVo() != null && orgVo.getAddressVo().getId()!=null) {
+			if (orgVo.getAddressVo() != null && orgVo.getAddressVo().getId() != null) {
 				Integer id = orgVo.getAddressVo().getId();
 				if (id != null) {
 					address = addressRepository.findOne(id);
 					if (address != null) {
 						org.setAddress(address);
-					}else {
+					} else {
 						logger.error("Invalid address Id");
 						return null;
 					}
 				}
-			}else {
+			} else {
 				logger.error("Address Can't be null");
 				return null;
 			}
-				
+
 			org = orgRepository.save(org);
 			if (org != null) {
 				return org.getId();
@@ -66,7 +65,7 @@ public class OrgServiceImpl implements OrgService {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Integer createCompositeOrg(OrgVo orgVo) {
 		if (orgVo != null) {
@@ -82,29 +81,29 @@ public class OrgServiceImpl implements OrgService {
 					address = addressRepository.findOne(id);
 					if (address != null) {
 						org.setAddress(address);
-					}else {
+					} else {
 						logger.error("Invalid Address Id");
-						return  null;
+						return null;
 					}
-				}else {
+				} else {
 					Integer addressId = addressService.createAddress(orgVo.getAddressVo());
-					if(addressId!=null) {
+					if (addressId != null) {
 						address = addressRepository.findOne(addressId);
 						if (address != null) {
 							org.setAddress(address);
-						}else {
+						} else {
 							logger.error("Address Can't be creatd...");
 							return null;
 						}
 					}
-					
+
 				}
-					
-			}else {
+
+			} else {
 				logger.error("Address Can't be null");
 				return null;
 			}
-				
+
 			org = orgRepository.save(org);
 			if (org != null) {
 				return org.getId();
@@ -226,7 +225,7 @@ public class OrgServiceImpl implements OrgService {
 				orgDetailsVo.setName(org.getName());
 				orgDetailsVo.setCountry(org.getCountry());
 				orgDetailsVo.setActive(org.isActive());
-				
+
 				if (org.getAddress() != null) {
 					orgDetailsVo.setState(org.getAddress().getState());
 					orgDetailsVo.setCity(org.getAddress().getCity());
@@ -236,12 +235,9 @@ public class OrgServiceImpl implements OrgService {
 						orgDetailsVo.setEmail(org.getAddress().getUser().getEmail());
 						orgDetailsVo.setPassword(org.getAddress().getUser().getPassword());
 					}
-
 				}
 			}
 		}
 		return orgDetailsVo;
-	
 	}
-
 }

@@ -1,5 +1,8 @@
 	package com.sp.mehta.applications.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +23,8 @@ public class EmployeeController {
 	EmployeeService employeeService;
 
 	@RequestMapping(value = ApplicationConstants.OPERATION_CREATE, method = RequestMethod.POST)
-	public Object createEmployee(@RequestBody EmployeeVo employeeVo) {
+	Map<String, Object> createEmployee(@RequestBody EmployeeVo employeeVo) {
+			
 			Integer id = employeeService.createEmployee(employeeVo);
 	
 	if (id != null && id>0) { 
@@ -32,21 +36,32 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value = ApplicationConstants.OPERATION_READ, method = RequestMethod.GET)
-	EmployeeVo readEmployee(@PathVariable Integer id) {
+	Map<String, Object> readEmployee(@PathVariable Integer id) {
 		EmployeeVo employeeVo = null;
+		Map<String, Object> resultMap = new HashMap<>();
 		if (id != null) {
 			employeeVo = employeeService.readEmployee(id);
+			resultMap.put("success", true);
+			resultMap.put("employeeVo", employeeVo);
 		}
-	return employeeVo;
+		else {
+			resultMap.put("error", "internal error");
+		}
+	return resultMap;
 			
 	}
 	
 	
 	@RequestMapping(value = ApplicationConstants.OPERATION_UPDATE, method = RequestMethod.POST)
-	Boolean updateEmployee(@RequestBody EmployeeVo employeeVo) {
+	Map<String, Object> updateEmployee(@RequestBody EmployeeVo employeeVo) {
+	Map<String, Object> resultMap = new HashMap<>();
 	if (employeeVo != null) {
-		return employeeService.updateEmployee(employeeVo);
+		employeeService.updateEmployee(employeeVo);
+		resultMap.put("Success", true);
 	}
-	return false;
+	else {
+		resultMap.put("Error", "failed");
+	}
+	return resultMap;
 	}
 }
