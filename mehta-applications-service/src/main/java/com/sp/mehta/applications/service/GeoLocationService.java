@@ -2,7 +2,7 @@ package com.sp.mehta.applications.service;
 
 import java.util.List;
 
-import com.sp.mehta.applications.common.vo.GeoLocationVo;
+import com.mehta.applications.common.vo.GeoLocationVo;
 
 
 public interface GeoLocationService {
@@ -13,7 +13,7 @@ public interface GeoLocationService {
 	
 	Boolean updateGeoLocation (GeoLocationVo geoLocationVo);
 	
-	Boolean deleteGeoLocation (Integer id);
-	
+	Boolean deleteGeoLocation(Integer id);
+
 	List<GeoLocationVo> listGeoLocation();
 }

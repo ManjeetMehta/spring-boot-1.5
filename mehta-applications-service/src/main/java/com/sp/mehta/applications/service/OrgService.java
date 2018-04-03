@@ -2,8 +2,8 @@ package com.sp.mehta.applications.service;
 
 import java.util.List;
 
-import com.sp.mehta.applications.common.vo.OrgDetailsVo;
-import com.sp.mehta.applications.common.vo.OrgVo;
+import com.mehta.applications.common.vo.OrgDetailsVo;
+import com.mehta.applications.common.vo.OrgVo;
 import com.sp.mehta.applications.model.Org;
 
 public interface OrgService {

@@ -2,7 +2,7 @@ package com.sp.mehta.applications.service;
 
 import java.util.List;
 
-import com.sp.mehta.applications.common.vo.PolicyVo;
+import com.mehta.applications.common.vo.PolicyVo;
 
 public interface PolicyService {
 

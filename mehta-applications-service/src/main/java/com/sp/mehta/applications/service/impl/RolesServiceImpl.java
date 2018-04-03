@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sp.mehta.applications.common.vo.RolesVo;
+import com.mehta.applications.common.vo.RolesVo;
 import com.sp.mehta.applications.model.Roles;
 import com.sp.mehta.applications.model.User;
 import com.sp.mehta.applications.repository.RolesRepository;

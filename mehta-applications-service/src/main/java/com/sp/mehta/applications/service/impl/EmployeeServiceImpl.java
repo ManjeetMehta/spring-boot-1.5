@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sp.mehta.applications.common.vo.EmployeeVo;
+import com.mehta.applications.common.vo.EmployeeVo;
 import com.sp.mehta.applications.model.Employee;
 import com.sp.mehta.applications.repository.EmployeeRepository;
 import com.sp.mehta.applications.service.EmployeeService;

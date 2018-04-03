@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sp.mehta.applications.common.vo.AddressVo;
-import com.sp.mehta.applications.common.vo.OrgDetailsVo;
-import com.sp.mehta.applications.common.vo.OrgVo;
-import com.sp.mehta.applications.common.vo.UserVo;
+import com.mehta.applications.common.vo.AddressVo;
+import com.mehta.applications.common.vo.OrgDetailsVo;
+import com.mehta.applications.common.vo.OrgVo;
+import com.mehta.applications.common.vo.UserVo;
 import com.sp.mehta.applications.model.Address;
 import com.sp.mehta.applications.model.Org;
 import com.sp.mehta.applications.repository.AddressRepository;

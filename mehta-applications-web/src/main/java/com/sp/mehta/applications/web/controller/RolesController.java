@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sp.mehta.applications.common.constants.ApplicationConstants;
-import com.sp.mehta.applications.common.util.ResponseBuilder;
-import com.sp.mehta.applications.common.vo.RolesVo;
+import com.mehta.applications.common.constants.ApplicationConstants;
+import com.mehta.applications.common.util.ResponseBuilder;
+import com.mehta.applications.common.vo.RolesVo;
 import com.sp.mehta.applications.service.RolesService;
 
 @RestController

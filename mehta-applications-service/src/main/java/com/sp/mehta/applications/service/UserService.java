@@ -1,6 +1,6 @@
 package com.sp.mehta.applications.service;
 
-import com.sp.mehta.applications.common.vo.UserVo;
+import com.mehta.applications.common.vo.UserVo;
 
 public interface UserService {
 

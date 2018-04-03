@@ -2,7 +2,7 @@ package com.sp.mehta.applications.service;
 
 import java.util.List;
 
-import com.sp.mehta.applications.common.vo.ProductVo;
+import com.mehta.applications.common.vo.ProductVo;
 import com.sp.mehta.applications.model.Product;
 
 public interface ProductService {

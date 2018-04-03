@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sp.mehta.applications.common.vo.SystemVo;
+import com.mehta.applications.common.vo.SystemVo;
 import com.sp.mehta.applications.model.System;
 import com.sp.mehta.applications.repository.SystemRepository;
 import com.sp.mehta.applications.service.SystemService;

@@ -2,7 +2,7 @@ package com.sp.mehta.applications.service;
 
 import java.util.List;
 
-import com.sp.mehta.applications.common.vo.EmployeeVo;
+import com.mehta.applications.common.vo.EmployeeVo;
 import com.sp.mehta.applications.model.Employee;
 
 public interface EmployeeService  {
