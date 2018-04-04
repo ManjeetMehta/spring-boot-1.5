@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 public class OrgVo implements Serializable {
+	private static final long serialVersionUID = 4855104496950248466L;
 	private Integer id;
 	private String name;
 	private String country;

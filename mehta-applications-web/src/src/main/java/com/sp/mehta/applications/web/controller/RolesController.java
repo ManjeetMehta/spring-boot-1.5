@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.controller;
+package com.mehta.applications.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sp.mehta.applications.common.constants.ApplicationConstants;
-import com.sp.mehta.applications.common.util.ResponseBuilder;
-import com.sp.mehta.applications.common.vo.RolesVo;
-import com.sp.mehta.applications.service.RolesService;
+import com.mehta.applications.common.constants.ApplicationConstants;
+import com.mehta.applications.common.util.ResponseBuilder;
+import com.mehta.applications.common.vo.RolesVo;
+import com.mehta.applications.service.RolesService;
 
 @RestController
 @RequestMapping(value=ApplicationConstants.OPERATION_ROLES)

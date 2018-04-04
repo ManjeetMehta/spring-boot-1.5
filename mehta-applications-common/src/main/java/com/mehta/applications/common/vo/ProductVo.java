@@ -3,6 +3,7 @@ package com.mehta.applications.common.vo;
 import java.io.Serializable;
 
 public class ProductVo implements Serializable {
+	private static final long serialVersionUID = -5735134631585340052L;
 	private Integer id;
     private String name;
     private String description;

@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mehta.applications.security.repository.SystemRepository;
-import com.mehta.applications.security.service.SystemService;
 import com.mehta.applications.common.vo.SystemVo;
 import com.mehta.applications.security.model.System;
+import com.mehta.applications.security.repository.SystemRepository;
+import com.mehta.applications.security.service.SystemService;
 
 @Component
 public class SystemServiceImpl implements SystemService {

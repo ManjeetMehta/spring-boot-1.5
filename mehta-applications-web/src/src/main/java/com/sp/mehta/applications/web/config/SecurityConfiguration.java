@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.config;
+package com.mehta.applications.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

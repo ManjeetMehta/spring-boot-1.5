@@ -73,7 +73,8 @@ public class SystemController {
 		Map<String, Object> resultMap = new HashMap<>();
 		if (systemVo != null) {
 			Boolean st = systemService.updateSystem(systemVo);
-			resultMap.put("status", "success");
+			if(st)
+				resultMap.put("status", "success");
 		} else {
 			resultMap.put("status", "failed");
 		}
@@ -87,7 +88,8 @@ public class SystemController {
 		Map<String, Object> resultMap = new HashMap<>();
 		if (id != null) {
 			Boolean st = systemService.deleteSystem(id);
-			resultMap.put("status", "success");
+			if(st)
+				resultMap.put("status", "success");
 			// resultMap.put(key, value)
 		} else {
 			resultMap.put("status", "failed");

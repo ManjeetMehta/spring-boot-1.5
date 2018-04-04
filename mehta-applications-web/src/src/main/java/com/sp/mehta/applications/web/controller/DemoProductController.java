@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.controller;
+package com.mehta.applications.web.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sp.mehta.applications.web.model.Product;
+import com.mehta.applications.web.model.Product;
 
 @Controller
 public class DemoProductController

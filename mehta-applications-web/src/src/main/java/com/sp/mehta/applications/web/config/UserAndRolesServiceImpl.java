@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.config;
+package com.mehta.applications.web.config;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.sp.mehta.applications.model.User;
-import com.sp.mehta.applications.repository.RolesRepository;
-import com.sp.mehta.applications.repository.UserRepository;
+import com.mehta.applications.model.User;
+import com.mehta.applications.repository.RolesRepository;
+import com.mehta.applications.repository.UserRepository;
 
 @Component
 public class UserAndRolesServiceImpl implements UserDetailsService    {

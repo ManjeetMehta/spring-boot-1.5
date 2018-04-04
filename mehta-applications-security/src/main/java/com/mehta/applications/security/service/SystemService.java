@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mehta.applications.common.vo.SystemVo;
 
+
 public interface SystemService {
 
 	SystemVo readSystem(Integer id);

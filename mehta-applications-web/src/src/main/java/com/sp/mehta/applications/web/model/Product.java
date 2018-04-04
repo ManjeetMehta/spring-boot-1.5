@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.model;
+package com.mehta.applications.web.model;
 
 import java.io.Serializable;
 import java.util.List;

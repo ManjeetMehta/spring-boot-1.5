@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.controller;
+package com.mehta.applications.web.controller;
 
 import java.util.Map;
 
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sp.mehta.applications.common.constants.ApplicationConstants;
-import com.sp.mehta.applications.common.util.ResponseBuilder;
-import com.sp.mehta.applications.service.TestService;
+import com.mehta.applications.common.constants.ApplicationConstants;
+import com.mehta.applications.common.util.ResponseBuilder;
+import com.mehta.applications.service.TestService;
 
 @RestController
 @RequestMapping(value=ApplicationConstants.OPERATION_TEST)

@@ -1,4 +1,4 @@
-package com.sp.mehta.applications.web.config;
+package com.mehta.applications.web.config;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
-import com.sp.mehta.applications.model.User;
+import com.mehta.applications.model.User;
 
 public class ApplicationUserDetails extends User implements UserDetails {
 
