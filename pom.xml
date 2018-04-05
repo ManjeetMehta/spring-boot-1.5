@@ -15,7 +15,8 @@
 		<module>mehta-applications-model</module>
 		<module>mehta-applications-repository</module>
 		<module>mehta-applications-service</module>
-		<module>mehta-applications-security</module>
 		<module>mehta-applications-web</module>
+		<module>mehta-applications-security</module>
+		<module>mehta-applications-social</module>
 	</modules>
 </project>
