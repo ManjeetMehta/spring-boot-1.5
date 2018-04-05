@@ -24,11 +24,6 @@
 
 	<dependencies>
 		<!-- Maven Module Dependency -->
-		<dependency>
-			<groupId>com.mehta</groupId>
-			<artifactId>mehta-applications-services</artifactId>
-			<version>1.0</version>
-		</dependency>
 
 		<!-- Spring Boot Starter Maven Dependency -->
 		<dependency>
@@ -77,6 +72,11 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.mehta</groupId>
+			<artifactId>mehta-applications-services</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

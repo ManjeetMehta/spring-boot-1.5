@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name= "system")
-public class System {
+public class ISystem {
 
 	private Integer id;	
 	private String storageFolderName;
@@ -20,11 +20,11 @@ public class System {
 	private Date lastModified;
 	private Long lastModifiedBy;
 	
-	public System() {
+	public ISystem() {
 		super();
 	}
 
-	public System(String storageFolderName, Date created, Long createdBy, Date lastModified,
+	public ISystem(String storageFolderName, Date created, Long createdBy, Date lastModified,
 			Long lastModifiedBy) {
 		super();
 		this.storageFolderName = storageFolderName;

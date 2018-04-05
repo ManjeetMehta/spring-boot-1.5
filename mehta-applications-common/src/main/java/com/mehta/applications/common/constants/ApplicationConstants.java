@@ -51,7 +51,7 @@ public class ApplicationConstants {
 	public static final String OPERATION_EMPLOYEE		= "/employee";
 	public static final String OPERATION_POLICY			= "/policy";
 	public static final String OPERATION_GEOLOCATION		= "/geo";
-	
+	public static final String OPERATION_ROLE			= "/role";
 	
 	public static final String OPERATION_TEST			="/test";
 	

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mehta.applications.common.vo.SystemVo;
-import com.mehta.applications.security.model.System;
+import com.mehta.applications.security.model.ISystem;
 import com.mehta.applications.security.repository.SystemRepository;
 import com.mehta.applications.security.service.SystemService;
 
@@ -21,7 +21,7 @@ public class SystemServiceImpl implements SystemService {
 	public SystemVo readSystem(Integer id) {
 		SystemVo systemVo= null;
 		if (id != null) {
-			System system = systemRepository.findOne(id);
+			ISystem system = systemRepository.findOne(id);
 			
 			if (system != null) {
 				systemVo = new SystemVo();
@@ -40,7 +40,7 @@ public class SystemServiceImpl implements SystemService {
 	public Integer createSystem(SystemVo systemVo) {
 		Integer id = null;
 		if (systemVo != null) {
-			System system = new System();
+			ISystem system = new ISystem();
 			system.setCreated(systemVo.getCreated());
 			system.setCreatedBy(systemVo.getCreatedBy());
 			system.setLastModified(systemVo.getLastModified());
@@ -57,7 +57,7 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public Boolean updateSystem(SystemVo systemVo) {
 		if (systemVo != null && systemVo.getId()!=null) {
-			System system = systemRepository.findOne(systemVo.getId());
+			ISystem system = systemRepository.findOne(systemVo.getId());
 			if (system != null) {
 				system.setCreated(systemVo.getCreated());
 				system.setCreatedBy(systemVo.getCreatedBy());
@@ -76,7 +76,7 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public Boolean deleteSystem(Integer id) {
 		if (id != null) {
-			System system = systemRepository.findOne(id);
+			ISystem system = systemRepository.findOne(id);
 			if (system != null && system.getId() != null) {
 				systemRepository.delete(id);
 				return true;
@@ -88,10 +88,10 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public List<SystemVo> listSystem() {
 		List<SystemVo> systemVoList = null;
-		List<System> listSystem = (List<System>) systemRepository.findAll();
+		List<ISystem> listSystem = (List<ISystem>) systemRepository.findAll();
 		if (listSystem != null) {
 			systemVoList = new ArrayList<SystemVo>();
-			for (System system : listSystem) {
+			for (ISystem system : listSystem) {
 				if (system != null) {
 					SystemVo systemVo = new SystemVo();
 					systemVo.setId(system.getId());
