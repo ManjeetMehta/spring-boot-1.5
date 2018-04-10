@@ -55,4 +55,9 @@ public class ApplicationConstants {
 	
 	public static final String OPERATION_TEST			="/test";
 	
+	
+	public static final String OPERATION_SOCIAL_FACEBOOK		= "/facebook";
+	public static final String OPERATION_SOCIAL_CONNECT		= "/connect";
+
+	
 }
