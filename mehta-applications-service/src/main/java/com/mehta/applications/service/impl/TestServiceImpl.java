@@ -1,12 +1,12 @@
 package com.mehta.applications.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.repository.TestRepository;
 import com.mehta.applications.service.TestService;
 
-@Component
+@Service
 public class TestServiceImpl implements TestService    {
 
 	@Autowired

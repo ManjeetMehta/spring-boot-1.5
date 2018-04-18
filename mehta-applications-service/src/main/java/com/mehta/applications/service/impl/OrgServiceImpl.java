@@ -6,7 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.AddressVo;
 import com.mehta.applications.common.vo.OrgDetailsVo;
@@ -19,7 +19,7 @@ import com.mehta.applications.repository.OrgRepository;
 import com.mehta.applications.service.AddressService;
 import com.mehta.applications.service.OrgService;
 
-@Component
+@Service
 public class OrgServiceImpl implements OrgService {
 
 	@Autowired

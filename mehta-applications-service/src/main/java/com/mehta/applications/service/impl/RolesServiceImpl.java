@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.RolesVo;
 import com.mehta.applications.model.Roles;
@@ -13,7 +13,7 @@ import com.mehta.applications.repository.RolesRepository;
 import com.mehta.applications.repository.UserRepository;
 import com.mehta.applications.service.RolesService;
 
-@Component
+@Service
 public class RolesServiceImpl implements RolesService    {
 
 	@Autowired

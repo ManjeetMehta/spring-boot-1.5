@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.AddressVo;
 import com.mehta.applications.common.vo.OrgVo;
@@ -15,7 +15,7 @@ import com.mehta.applications.repository.OrgRepository;
 import com.mehta.applications.repository.ProductRepository;
 import com.mehta.applications.service.ProductService;
 
-@Component
+@Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired

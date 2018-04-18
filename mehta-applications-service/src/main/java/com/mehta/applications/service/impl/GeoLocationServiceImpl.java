@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.GeoLocationVo;
 import com.mehta.applications.model.GeoLocation;
 import com.mehta.applications.repository.GeoLocationRepository;
 import com.mehta.applications.service.GeoLocationService;
 
-@Component
+@Service
 public class GeoLocationServiceImpl implements GeoLocationService {
 
 	@Autowired

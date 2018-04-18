@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.SystemVo;
 import com.mehta.applications.model.System;
 import com.mehta.applications.repository.SystemRepository;
 import com.mehta.applications.service.SystemService;
 
-@Component
+@Service
 public class SystemServiceImpl implements SystemService {
 
 	@Autowired

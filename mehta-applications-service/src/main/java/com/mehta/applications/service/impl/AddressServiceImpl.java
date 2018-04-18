@@ -6,7 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.AddressDetailsVo;
 import com.mehta.applications.common.vo.AddressVo;
@@ -17,7 +17,7 @@ import com.mehta.applications.repository.AddressRepository;
 import com.mehta.applications.repository.UserRepository;
 import com.mehta.applications.service.AddressService;
 
-@Component
+@Service
 public class AddressServiceImpl implements AddressService {
 
 	@Autowired

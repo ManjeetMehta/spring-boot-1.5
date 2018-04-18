@@ -3,14 +3,14 @@ package com.mehta.applications.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mehta.applications.common.vo.EmployeeVo;
 import com.mehta.applications.model.Employee;
 import com.mehta.applications.repository.EmployeeRepository;
 import com.mehta.applications.service.EmployeeService;
 
-@Component
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
