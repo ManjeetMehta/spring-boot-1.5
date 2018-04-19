@@ -8,6 +8,14 @@ public class ApplicationConstants {
 	
 	public static final String API_KEY					="apiKey";
 	public static final String API_VALUE				="apiValue";
+	
+	
+	public static final String FACEBOOK_BASE_URL		= "/facebook";
+	public static final String TWITTER_BASE_URL			= "/twitter";
+	public static final String LINKEDIN_BASE_URL		= "/linkedin";
+	
+	public static final String OPERATION_TWITTER_SEARCH		= "/search/{hashTag}";
+	public static final String OPERATION_TWITTER_TIMELINE	= "/timeline/{timeline}";
 
 	public static final String RESPONSE_ID 				= "id";
 	public static final String RESPONSE_OBJECT 			= "object";

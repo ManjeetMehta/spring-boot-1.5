@@ -13,13 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mehta.applications.common.constants.ApplicationConstants;
+
 @Controller
+@RequestMapping(value = ApplicationConstants.FACEBOOK_BASE_URL)
 public class FacebookController<modelAndView> {
 
-	private FacebookConnectionFactory factory = new FacebookConnectionFactory("1405309989574916",
-			"af3fca607ba52d451d992ff9266c5d5b");
-
-	@RequestMapping("facebook/facebook.html")
+	private FacebookConnectionFactory factory = new FacebookConnectionFactory("1405309989574916","af3fca607ba52d451d992ff9266c5d5b");
+	
+	/*@Autowired
+	private Facebook facebook;
+*/
+	@RequestMapping("/facebook.html")
 	public String startFacebookProcess() {
 		OAuth2Operations operations = factory.getOAuthOperations();
 		OAuth2Parameters params = new OAuth2Parameters();
@@ -32,7 +37,7 @@ public class FacebookController<modelAndView> {
 		return "redirect" + url;
 	}
 
-	@RequestMapping("facebook/returnFromFacebook.html")
+	@RequestMapping("/returnFromFacebook.html")
 	public modelAndView getDataFromFacebook(@RequestParam("code") String authorizationCode) {
 		OAuth2Operations operations = factory.getOAuthOperations();
 		AccessGrant accessGrant = operations.exchangeForAccess(authorizationCode,
