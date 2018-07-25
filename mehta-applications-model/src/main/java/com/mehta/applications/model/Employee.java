@@ -14,7 +14,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name= "employee")
 public class Employee implements Serializable {
-//	Date date = new Date();
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//	Date date = new Date();
 	private Integer id;
 	private String firstName;
 	private String middleName;
